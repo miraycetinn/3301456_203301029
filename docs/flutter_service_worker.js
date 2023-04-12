@@ -4,10 +4,9 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "2ec0ad2da70d66ad7da6740fe5d363cd",
-"index.html": "8cfffe9d3e714a0abf8a27db2b177389",
-"/": "8cfffe9d3e714a0abf8a27db2b177389",
-"main.dart.js": "a30550bbb06734cf7f2b5199a4512750",
-"flutter.js": "a85fcf6324d3c4d3ae3be1ae4931e9c5",
+"index.html": "12e301eb55c4b6f204c46c3d9c9c947e",
+"/": "12e301eb55c4b6f204c46c3d9c9c947e",
+"main.dart.js": "f8a39fee5824ec6e215939e8d44e10c4",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
@@ -22,11 +21,7 @@ const RESOURCES = {
 "assets/assets/img.png": "ee6f6d52c610ab0a8e1cba77657861a1",
 "assets/assets/login_illustration.svg": "380a53a7150fe381fec9be01308315e0",
 "assets/assets/home_page_top.svg": "4948f3c292177b80d15865bd5f3012b3",
-"assets/assets/welcome_illustration.svg": "6f648ac4a0e89614b06f9ce28740d699",
-"canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
-"canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
-"canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
-"canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e"
+"assets/assets/welcome_illustration.svg": "6f648ac4a0e89614b06f9ce28740d699"
 };
 
 // The application shell files that are downloaded before a service worker can

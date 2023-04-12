@@ -1,13 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  final logosize = 0.0.obs;
+
+  void changeLogoSize() {
+    logosize.value += 400;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1), () {
+      changeLogoSize();
+    });
+
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.toNamed('/welcome');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Text('dsafsad'),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              flex: 4,
+              child: Center(
+                child: Obx(
+                  () => AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.bounceOut,
+                    width: logosize.value,
+                    height: logosize.value,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/img.png"),
+                              fit: BoxFit.contain)),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
