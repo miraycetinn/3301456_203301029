@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
+
+  static TextEditingController registerNameTextController =
+      TextEditingController();
+  static TextEditingController registerEmailTextController =
+      TextEditingController();
+  static TextEditingController registerPasswordTextController =
+      TextEditingController();
+  static TextEditingController registerPasswordTwoTextController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +47,10 @@ class RegisterScreen extends StatelessWidget {
                     color: const Color(0xFFECECEC),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Opacity(
+                  child: Opacity(
                     opacity: 0.4,
                     child: TextField(
+                      controller: registerNameTextController,
                       decoration: InputDecoration(
                         hintText: 'Enter your full name',
                         border: InputBorder.none,
@@ -57,9 +66,10 @@ class RegisterScreen extends StatelessWidget {
                     color: const Color(0xFFECECEC),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Opacity(
+                  child: Opacity(
                     opacity: 0.4,
                     child: TextField(
+                      controller: registerEmailTextController,
                       decoration: InputDecoration(
                         hintText: 'Enter your email',
                         border: InputBorder.none,
@@ -75,9 +85,10 @@ class RegisterScreen extends StatelessWidget {
                     color: const Color(0xFFECECEC),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Opacity(
+                  child: Opacity(
                     opacity: 0.4,
                     child: TextField(
+                      controller: registerPasswordTextController,
                       decoration: InputDecoration(
                         hintText: 'Enter password',
                         border: InputBorder.none,
@@ -93,9 +104,10 @@ class RegisterScreen extends StatelessWidget {
                     color: const Color(0xFFECECEC),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Opacity(
+                  child: Opacity(
                     opacity: 0.4,
                     child: TextField(
+                      controller: registerPasswordTwoTextController,
                       decoration: InputDecoration(
                         hintText: 'Confirm password',
                         border: InputBorder.none,
@@ -110,7 +122,33 @@ class RegisterScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.toNamed('/layout');
+                        if (registerNameTextController.value.text == "" ||
+                            registerEmailTextController.value.text == "" ||
+                            registerPasswordTextController.value.text == "" ||
+                            registerPasswordTwoTextController.value.text == ""
+                        ) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertBlankArea;
+                              });
+                        } else if (!(registerEmailTextController
+                            .value.text.isEmail)) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertBlankArea;
+                              });
+                        } else if (!(registerPasswordTextController.value.text ==
+                            registerPasswordTwoTextController.value.text)) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alertBlankArea;
+                              });
+                        } else {
+                          Get.offAllNamed('/layout');
+                        }
                         // Butona tıklandığında yapılacak işlemler burada yer alır.
                       },
                       child: Text(
@@ -140,8 +178,6 @@ class RegisterScreen extends StatelessWidget {
   }
 }
 
-
-
-
-
-
+AlertDialog alertBlankArea = AlertDialog(
+  title: Text("Boş Alan"),
+);

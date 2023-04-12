@@ -17,7 +17,7 @@ void main() {
     getPages: [
       GetPage(name: '/', page: () => const SplashScreen()),
       GetPage(name: '/welcome', page: () => const WelcomeScreen()),
-      GetPage(name: '/login', page: () => const LoginScreen()),
+      GetPage(name: '/login', page: () => LoginScreen()),
       GetPage(name: '/register', page: () => const RegisterScreen()),
       GetPage(name: '/layout', page: () => const LayoutScreen()),
       GetPage(name: '/skin-type', page: () => const SkinTypeScreen()),
