@@ -48,7 +48,11 @@ class SelectTile extends StatelessWidget {
             Expanded(
               child: Container(
                 alignment: Alignment.centerRight,
-                child: Text("icon"),
+                child: SvgPicture.asset(
+                  'assets/right_arrow_icon.svg',
+                  height: 25,
+                  width: 25,
+                ),
               ),
             )
           ],

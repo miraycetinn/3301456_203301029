@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
-                "Settings",
+                "About",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
               ),
             ),
@@ -73,25 +73,13 @@ class SettingScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("Profile Settings",style: TextStyle(fontSize: 16),),
+                    child: Text("Terms of Use",style: TextStyle(fontSize: 16),),
                   ),
                   Container(height: 1,color: Colors.black,),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("Password",style: TextStyle(fontSize: 16),),
-                  ),
-                  Container(height: 1,color: Colors.black,),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("Feedback",style: TextStyle(fontSize: 16),),
-                  ),
-                  Container(height: 1,color: Colors.black,),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("Rate us",style: TextStyle(fontSize: 16),),
+                    child: Text("Privacy policy",style: TextStyle(fontSize: 16),),
                   ),
                 ],
               ),

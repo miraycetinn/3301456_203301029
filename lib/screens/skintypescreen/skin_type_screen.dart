@@ -28,7 +28,7 @@ class SkinTypeScreen extends StatelessWidget {
                     width: 50,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.red),
+                        color: Color.fromRGBO(97, 121, 205, 70)),
                   ),
                   SizedBox(
                     width: 15,
@@ -42,11 +42,11 @@ class SkinTypeScreen extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              SkinTypeTile(title: "title", isActive: false),
-              SkinTypeTile(title: "title", isActive: false),
-              SkinTypeTile(title: "title", isActive: false),
-              SkinTypeTile(title: "title", isActive: false),
-              SkinTypeTile(title: "title", isActive: false),
+              SkinTypeTile(title: "Normal Skin", isActive: false),
+              SkinTypeTile(title: "Karma Skin", isActive: false),
+              SkinTypeTile(title: "Sensitive Skin", isActive: false),
+              SkinTypeTile(title: "Dry Skin", isActive: false),
+              SkinTypeTile(title: "Oily Skin", isActive: false),
             ],
           ),
         ),

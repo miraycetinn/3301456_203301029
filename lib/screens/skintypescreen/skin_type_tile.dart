@@ -25,9 +25,9 @@ class _SkinTypeTileState extends State<SkinTypeTile> {
           width: double.infinity,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-            color: widget.isActive ? Colors.grey: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.pink)),
+            color: widget.isActive ? Color.fromRGBO(141, 157, 216, 100): Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Color.fromRGBO(141, 157, 216, 85))),
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(widget.title, style: TextStyle(

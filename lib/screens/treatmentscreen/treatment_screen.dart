@@ -5,15 +5,23 @@ import 'package:get/get.dart';
 
 class TreatmentScreen extends StatelessWidget {
   TreatmentScreen({Key? key}) : super(key: key);
-  final productList=[["title","category","assets/img.png"]];
+  final productList = [
+    ["Tropical Hair Mask", "HAIR GROWTH", "assets/img_2.png"],
+    ["Lip Exfoliator", "SMOOTHİNG", "assets/img_3.png"],
+    ["Nail Care", "NAIL GROWTH", "assets/img_4.png"],
+    ["Vitamin Boost Mask", "MOISTURIZING", "assets/img_5.png"],
+    ["Body Mask", "MOISTURIZING", "assets/img_6.png"],
+    ["Face Mask", "ACNE TREATMENT", "assets/img_7.png"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
           Container(
-            child: Text("Fotoğraf"),
-            color: Colors.red,
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage("assets/img_1.png"))),
             width: double.infinity,
             height: 50,
           ),
@@ -60,14 +68,17 @@ class TreatmentScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: GridView.builder(
                 itemCount: productList.length,
-
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 3 / 5,
                     crossAxisSpacing: 25.0,
                     mainAxisSpacing: 25.0),
                 itemBuilder: (BuildContext context, int index) {
-                  return  GridViewItems( title: productList[index][0], category: productList[index][1], imagePath: productList[index][2],);
+                  return GridViewItems(
+                    title: productList[index][0],
+                    category: productList[index][1],
+                    imagePath: productList[index][2],
+                  );
                 },
               ),
             ),

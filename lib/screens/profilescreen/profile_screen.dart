@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh/screens/profilescreen/select_tile.dart';
 import 'package:get/get.dart';
 
@@ -20,12 +21,13 @@ class ProfileScreen extends StatelessWidget {
                   child: Container(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
                     alignment: Alignment.center,
-                    child: Text("icon"),
+                    child: SvgPicture.asset(
+                      'assets/setting_icon.svg',
+                      height: Get.height * 0.3,
+                      alignment: Alignment.topCenter,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
               ),
@@ -54,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Colors.blue),
+                        color: Color.fromRGBO(144, 161, 220, 1)),
                   ),
                 ),
               )
@@ -134,8 +136,8 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Column(
                   children: [
-                    SelectTile(iconPath: "assets/bubble.svg", title: "Skin Type", onClick: (){Get.toNamed("/skin-type");}),
-                    SelectTile(iconPath: "assets/bubble.svg", title: "Concern", onClick: (){Get.toNamed("/concern");}),
+                    SelectTile(iconPath: "assets/skin_type_icon.svg", title: "Skin Type", onClick: (){Get.toNamed("/skin-type");}),
+                    SelectTile(iconPath: "assets/concern_icon.svg", title: "Concern", onClick: (){Get.toNamed("/concern");}),
                   ],
                 ),
               ),
