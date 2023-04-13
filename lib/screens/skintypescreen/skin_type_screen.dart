@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fresh/screens/skintypescreen/skin_type_tile.dart';
+import 'package:get/get.dart';
 
 class SkinTypeScreen extends StatelessWidget {
   const SkinTypeScreen({Key? key}) : super(key: key);
@@ -15,7 +17,24 @@ class SkinTypeScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text("data"),
+              Padding(
+                padding: const EdgeInsets.only(left:3.0),
+                child: InkWell(
+                  highlightColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  radius: 0,
+                  onTap: (){Get.back();},
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.centerLeft,
+                    child: SvgPicture.asset(
+                      "assets/left_arrow_icon.svg",
+                      height: 25,
+                      width: 25,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -29,6 +48,11 @@ class SkinTypeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Color.fromRGBO(97, 121, 205, 70)),
+                    child: SvgPicture.asset(
+                      "assets/skin_type_icon.svg",
+                      height: 50,
+                      width: 50,
+                    ),
                   ),
                   SizedBox(
                     width: 15,

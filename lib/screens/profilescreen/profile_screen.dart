@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fresh/screens/profilescreen/select_tile.dart';
+import 'package:fresh/screens/registerscreen/register_screen.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,7 +18,9 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
-                  onTap: (){Get.toNamed("/settings");},
+                  onTap: () {
+                    Get.toNamed("/settings");
+                  },
                   child: Container(
                     height: 40,
                     width: 40,
@@ -65,7 +68,9 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "Miray Çetin",
+              RegisterScreen.registerNameTextController.value.text.isEmpty
+                  ? "Miray Çetin"
+                  : RegisterScreen.registerNameTextController.value.text,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
             ),
           ),
@@ -136,8 +141,18 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Column(
                   children: [
-                    SelectTile(iconPath: "assets/skin_type_icon.svg", title: "Skin Type", onClick: (){Get.toNamed("/skin-type");}),
-                    SelectTile(iconPath: "assets/concern_icon.svg", title: "Concern", onClick: (){Get.toNamed("/concern");}),
+                    SelectTile(
+                        iconPath: "assets/skin_type_icon.svg",
+                        title: "Skin Type",
+                        onClick: () {
+                          Get.toNamed("/skin-type");
+                        }),
+                    SelectTile(
+                        iconPath: "assets/concern_icon.svg",
+                        title: "Concern",
+                        onClick: () {
+                          Get.toNamed("/concern");
+                        }),
                   ],
                 ),
               ),

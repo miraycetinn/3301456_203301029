@@ -51,6 +51,7 @@ class RegisterScreen extends StatelessWidget {
                     opacity: 0.4,
                     child: TextField(
                       controller: registerNameTextController,
+                      
                       decoration: InputDecoration(
                         hintText: 'Enter your full name',
                         border: InputBorder.none,
@@ -89,6 +90,7 @@ class RegisterScreen extends StatelessWidget {
                     opacity: 0.4,
                     child: TextField(
                       controller: registerPasswordTextController,
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Enter password',
                         border: InputBorder.none,
@@ -108,6 +110,7 @@ class RegisterScreen extends StatelessWidget {
                     opacity: 0.4,
                     child: TextField(
                       controller: registerPasswordTwoTextController,
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Confirm password',
                         border: InputBorder.none,
@@ -137,14 +140,14 @@ class RegisterScreen extends StatelessWidget {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return alertBlankArea;
+                                return alertOnWrongEmail;
                               });
                         } else if (!(registerPasswordTextController.value.text ==
                             registerPasswordTwoTextController.value.text)) {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return alertBlankArea;
+                                return alertOnPasswordNotMatching;
                               });
                         } else {
                           Get.offAllNamed('/layout');
@@ -160,7 +163,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF6179CD),
+                        backgroundColor: Color(0xFF6179CD),
                         padding: EdgeInsets.symmetric(vertical: 15.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -180,4 +183,10 @@ class RegisterScreen extends StatelessWidget {
 
 AlertDialog alertBlankArea = AlertDialog(
   title: Text("Boş Alan"),
+);
+AlertDialog alertOnWrongEmail = AlertDialog(
+  title: Text("Hatalı Email"),
+);
+AlertDialog alertOnPasswordNotMatching = AlertDialog(
+  title: Text("Şifreler uyuşmuyor"),
 );

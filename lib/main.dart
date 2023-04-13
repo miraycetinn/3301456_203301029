@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
-    initialRoute: '/layout',
+    initialRoute: '/',
     getPages: [
       GetPage(name: '/', page: () => const SplashScreen()),
       GetPage(name: '/welcome', page: () => const WelcomeScreen()),
