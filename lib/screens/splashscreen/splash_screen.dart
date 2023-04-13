@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -42,12 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     curve: Curves.bounceOut,
                     width: logosize.value,
                     height: logosize.value,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/img.png"),
-                              fit: BoxFit.contain)),
-                    ),
+                    child:
+                    SvgPicture.asset('assets/splash_icon.svg')
                   ),
                 ),
               ),

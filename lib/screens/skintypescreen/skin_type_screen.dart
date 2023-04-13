@@ -21,6 +21,7 @@ class SkinTypeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left:3.0),
                 child: InkWell(
                   highlightColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   radius: 0,
                   onTap: (){Get.back();},
