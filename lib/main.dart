@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fresh/models/database.handler.dart';
@@ -18,12 +20,17 @@ import 'package:fresh/screens/skintypescreen/skin_type_screen.dart';
 import 'package:fresh/screens/splashscreen/splash_screen.dart';
 import 'package:fresh/screens/welcomescreen/welcome_screen.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseHandler().initializeDatabase();
+
+  if(Platform.isAndroid){
+    await DatabaseHandler().initializeDatabase();
+  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
