@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fresh/screens/loginscreen/login_screen.dart';
-import 'package:fresh/screens/registerscreen/register_screen.dart';
+import 'package:fresh/globals.dart' as globals;
 import 'package:fresh/widgets/checkboxitem/check_box_item.dart';
 import 'package:get/get.dart';
 
@@ -46,9 +45,7 @@ class HomeScreen extends StatelessWidget {
                 top: 90,
                 left: 20,
                 child: Text(
-                  LoginScreen.loginEmailTextController.value.text == ""
-                      ? RegisterScreen.registerNameTextController.value.text
-                      : LoginScreen.loginEmailTextController.value.text,
+                  globals.user?.fullName ?? '',
                   style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.w700,
@@ -73,23 +70,72 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                CheckBoxItem(
-                    time: "09:00",
-                    activityName: "Morning Routine",
-                    assetPath: "assets/home_page_top.svg"),
-                CheckBoxItem(
-                    time: "09:00",
-                    activityName: "Morning Routine",
-                    assetPath: "assets/home_page_top.svg"),
-                CheckBoxItem(
-                    time: "09:00",
-                    activityName: "Morning Routine",
-                    assetPath: "assets/home_page_top.svg"),
+                InkWell(
+                  onLongPress: () {
+                    Get.toNamed("/morning-routine");
+                  },
+                  child: CheckBoxItem(
+                      time: "09:00",
+                      activityName: "Morning Routine",
+                      assetPath: "assets/morning_routine.svg"),
+                ),
+                InkWell(
+                  onLongPress: () {
+                    Get.toNamed("/skin-log");
+                  },
+                  child: CheckBoxItem(
+                      time: "13:00",
+                      activityName: "Skin Log",
+                      assetPath: "assets/diary_log.svg"),
+                ),
+                InkWell(
+                  onLongPress: () {
+                    Get.toNamed("/night-routine");
+                  },
+                  child: CheckBoxItem(
+                      time: "21:00",
+                      activityName: "Night Routine",
+                      assetPath: "assets/night_routine.svg"),
+                ),
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Color(0xFF6179CD),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Daily Dose Of Skincare Advice",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Cleanse your face twice daily, hydrate with a suitable moisturizer, and always protect your skin with sunscreen. Consistency is key for healthy, glowing skin.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+
         ],
       ),
     );
   }
 }
+

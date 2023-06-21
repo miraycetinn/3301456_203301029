@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fresh/globals.dart' as globals;
+import 'package:fresh/utilities/authentication.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  static TextEditingController loginEmailTextController = TextEditingController();
-  static TextEditingController loginPasswordTextController = TextEditingController();
+  static TextEditingController loginEmailTextController =
+      TextEditingController();
+  static TextEditingController loginPasswordTextController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,13 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Welcome Back!", style: TextStyle(
-                      fontSize: 40, fontWeight: FontWeight.bold,),),
+                    Text(
+                      "Welcome Back!",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Container(
                       height: 200,
                       width: 300,
@@ -45,11 +54,15 @@ class LoginScreen extends StatelessWidget {
                           color: Color(0xFFECECEC),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Opacity(opacity: 0.4, child: TextField(
-                          controller: loginEmailTextController,
-                          decoration: InputDecoration(
-                            hintText: 'Enter Your Email',
-                            border: InputBorder.none,),),
+                        child: Opacity(
+                          opacity: 0.4,
+                          child: TextField(
+                            controller: loginEmailTextController,
+                            decoration: InputDecoration(
+                              hintText: 'Enter Your Email',
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -62,12 +75,16 @@ class LoginScreen extends StatelessWidget {
                           color: Color(0xFFECECEC),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Opacity(opacity: 0.4, child: TextField(
-                          controller: loginPasswordTextController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Enter Your Password',
-                            border: InputBorder.none,),),
+                        child: Opacity(
+                          opacity: 0.4,
+                          child: TextField(
+                            controller: loginPasswordTextController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: 'Enter Your Password',
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -78,27 +95,42 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: ElevatedButton(
                           onPressed: () {
-                            if (loginPasswordTextController.value.text == ""){
-                              showDialog(context: context, builder: (BuildContext context) {
-                                return alertBlankPassword;
-                              });
-                            } else if (!loginEmailTextController.value.text.isEmail) {
-                              showDialog(context: context, builder: (BuildContext context) {
-                                return alertWrongEmail;
-                              });
-                            } else if (loginPasswordTextController.value.text == "sifrem"){
-                              Get.offAllNamed('/layout');
+                            if (loginPasswordTextController.value.text == "") {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return alertBlankPassword;
+                                  });
+                            } else if (!loginEmailTextController
+                                .value.text.isEmail) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return alertWrongEmail;
+                                  });
+                            } else {
+                              Authentication()
+                                  .login(loginEmailTextController.text,
+                                      loginPasswordTextController.text)
+                                  .then((value) {
+                                globals.fetchUser(
+                                    callback: () => Get.offAllNamed('/layout'));
+                                return value;
+                              }).catchError((onError) => showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return alertWrongCredits;
+                                      }));
                             }
-                            else{
-                              showDialog(context: context, builder: (BuildContext context) {
-                                return alertWrongCredits;
-                              });
-                            }
-                            // Butona tıklandığında yapılacak işlemler burada yer alır.
-                            },
-                          child: Text('Log In', style: TextStyle(fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,),),
+                          },
+                          child: Text(
+                            'Log In',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF6179CD),
                             padding: EdgeInsets.symmetric(vertical: 15.0),

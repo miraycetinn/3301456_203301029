@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fresh/models/User.model.dart';
+import 'package:fresh/utilities/authentication.dart';
 import 'package:get/get.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -51,7 +53,6 @@ class RegisterScreen extends StatelessWidget {
                     opacity: 0.4,
                     child: TextField(
                       controller: registerNameTextController,
-                      
                       decoration: InputDecoration(
                         hintText: 'Enter your full name',
                         border: InputBorder.none,
@@ -128,8 +129,8 @@ class RegisterScreen extends StatelessWidget {
                         if (registerNameTextController.value.text == "" ||
                             registerEmailTextController.value.text == "" ||
                             registerPasswordTextController.value.text == "" ||
-                            registerPasswordTwoTextController.value.text == ""
-                        ) {
+                            registerPasswordTwoTextController.value.text ==
+                                "") {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -142,7 +143,8 @@ class RegisterScreen extends StatelessWidget {
                               builder: (BuildContext context) {
                                 return alertOnWrongEmail;
                               });
-                        } else if (!(registerPasswordTextController.value.text ==
+                        } else if (!(registerPasswordTextController
+                                .value.text ==
                             registerPasswordTwoTextController.value.text)) {
                           showDialog(
                               context: context,
@@ -150,7 +152,20 @@ class RegisterScreen extends StatelessWidget {
                                 return alertOnPasswordNotMatching;
                               });
                         } else {
-                          Get.offAllNamed('/layout');
+                          Authentication()
+                              .createUser(UserModel(
+                                  fullName: registerNameTextController.text,
+                                  email: registerEmailTextController.text,
+                                  password:
+                                      registerPasswordTextController.text))
+                              .then((value) => Get.offAllNamed('/questions'))
+                              .catchError((onError) =>
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(
+                                        "Kayıt Yapılırken Hata İle Karşılaşıldı"),
+                                    backgroundColor: Colors.red,
+                                  )));
                         }
                         // Butona tıklandığında yapılacak işlemler burada yer alır.
                       },

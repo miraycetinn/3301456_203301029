@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fresh/utilities/authentication.dart';
+import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -34,9 +36,12 @@ class SettingScreen extends StatelessWidget {
                   ),
                   Container(height: 1,color: Colors.black,),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("Password",style: TextStyle(fontSize: 16),),
+                  InkWell(
+                    onTap: (){Get.toNamed('/change-password');},
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("Password",style: TextStyle(fontSize: 16),),
+                    ),
                   ),
                   Container(height: 1,color: Colors.black,),
 
@@ -80,6 +85,17 @@ class SettingScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: Text("Privacy policy",style: TextStyle(fontSize: 16),),
+                  ),
+                  Container(height: 1,color: Colors.black,),
+
+                  InkWell(
+                    onTap: (){
+                      Authentication().out().then((value) => Get.toNamed("/"));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("Log Out",style: TextStyle(fontSize: 16),),
+                    ),
                   ),
                 ],
               ),

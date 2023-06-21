@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fresh/globals.dart' as globals;
 import 'package:fresh/screens/skintypescreen/skin_type_tile.dart';
+import 'package:fresh/utilities/skin_type.dart';
 import 'package:get/get.dart';
 
 class SkinTypeScreen extends StatelessWidget {
@@ -18,13 +20,15 @@ class SkinTypeScreen extends StatelessWidget {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left:3.0),
+                padding: const EdgeInsets.only(left: 3.0),
                 child: InkWell(
                   highlightColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   radius: 0,
-                  onTap: (){Get.back();},
+                  onTap: () {
+                    Get.back();
+                  },
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.centerLeft,
@@ -67,11 +71,26 @@ class SkinTypeScreen extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              SkinTypeTile(title: "Normal Skin", isActive: false),
-              SkinTypeTile(title: "Karma Skin", isActive: false),
-              SkinTypeTile(title: "Sensitive Skin", isActive: false),
-              SkinTypeTile(title: "Dry Skin", isActive: false),
-              SkinTypeTile(title: "Oily Skin", isActive: false),
+              SkinTypeTile(
+                  title: "Normal Skin",
+                  isActive: globals.skinTypeGlobal!.getQuestion1Answer() ==
+                      SkinQuestion1Answers.normal),
+              SkinTypeTile(
+                  title: "Karma Skin",
+                  isActive: globals.skinTypeGlobal!.getQuestion1Answer() ==
+                      SkinQuestion1Answers.itchy),
+              SkinTypeTile(
+                  title: "Sensitive Skin",
+                  isActive: globals.skinTypeGlobal!.getQuestion2Answer() ==
+                      SkinQuestion2Answers.sensitive),
+              SkinTypeTile(
+                  title: "Dry Skin",
+                  isActive: globals.skinTypeGlobal!.getQuestion1Answer() ==
+                      SkinQuestion1Answers.dry),
+              SkinTypeTile(
+                  title: "Oily Skin",
+                  isActive: globals.skinTypeGlobal!.getQuestion1Answer() ==
+                      SkinQuestion1Answers.oily),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fresh/globals.dart' as globals;
 import 'package:fresh/screens/diaryscreen/diary_screen.dart';
 import 'package:fresh/screens/homescreen/home_screen.dart';
 import 'package:fresh/screens/profilescreen/profile_screen.dart';
@@ -29,12 +30,14 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    globals.fetchSkinType();
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // Fixed
+        type: BottomNavigationBarType.fixed,
+        // Fixed
         backgroundColor: Color.fromRGBO(97, 121, 205, 0.7),
         selectedItemColor: const Color.fromRGBO(13, 28, 76, 1),
         unselectedItemColor: Colors.white,

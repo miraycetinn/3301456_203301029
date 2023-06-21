@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1013812992051",
+    "project_id": "fresh-45922",
+    "storage_bucket": "fresh-45922.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013812992051:android:4c6d5845e662d5a1c2ab46",
+        "android_client_info": {
+          "package_name": "tr.com.miraycetin.fresh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013812992051-o9gkjdavkhe2gl21fn8cbh6bm2jo2e8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDLdeBa2JHUMlfUg8vtbmmAfk8nS2v6TQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013812992051-o9gkjdavkhe2gl21fn8cbh6bm2jo2e8l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1013812992051-9ja5o0pf3pjnt22l9ssdl7pif1eht9fa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tr.com.miraycetin.fresh"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

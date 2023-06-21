@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fresh/globals.dart' as globals;
 import 'package:fresh/screens/profilescreen/select_tile.dart';
-import 'package:fresh/screens/registerscreen/register_screen.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -68,9 +68,7 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              RegisterScreen.registerNameTextController.value.text.isEmpty
-                  ? "Miray Çetin"
-                  : RegisterScreen.registerNameTextController.value.text,
+              globals.user!.fullName,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
             ),
           ),
@@ -152,6 +150,18 @@ class ProfileScreen extends StatelessWidget {
                         title: "Concern",
                         onClick: () {
                           Get.toNamed("/concern");
+                        }),
+                    SelectTile(
+                        iconPath: "assets/my_habit_icon.svg",
+                        title: "My Habits",
+                        onClick: () {
+                          Get.toNamed("/my-habit");
+                        }),
+                    SelectTile(
+                        iconPath: "assets/age_gender_icon.svg",
+                        title: "Age & Gender",
+                        onClick: () {
+                          Get.toNamed("/age-gender");
                         }),
                   ],
                 ),
