@@ -1,14 +1,33 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fresh/globals.dart' as globals;
 import 'package:fresh/widgets/checkboxitem/check_box_item.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    Dio dio = Dio();
+    Future<Null> _downloadNetworkImage() async {
+      try {
+        var dir = await getTemporaryDirectory();
+        print(dir);
+        await dio.download(
+            "https://avatars.dicebear.com/v2/avataaars/${globals.user?.fullName ?? ""}.svg?options[mood][]=happy",
+            '${dir.path}/image.svg');
+      } catch (exp) {}
+    }
+
+    _downloadNetworkImage();
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,15 +40,32 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 width: double.infinity,
               ),
-              Positioned(
-                top: 120,
-                right: 40,
-                child: Image.asset(
-                  'assets/img.png',
-                  width: 105,
-                  height: 105,
-                ),
-              ),
+              FutureBuilder(
+                  future: getTemporaryDirectory(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Positioned(
+                        top: 120,
+                        right: 40,
+                        child: SvgPicture.asset(
+                          '${snapshot.data?.path}/image.svg',
+                          height: 105,
+                          alignment: Alignment.topCenter,
+                          width: 105,
+                        ),
+                      );
+                    } else {
+                      return Positioned(
+                        top: 120,
+                        right: 40,
+                        child: Image.asset(
+                          'assets/img.png',
+                          width: 105,
+                          height: 105,
+                        ),
+                      );
+                    }
+                  }),
               const Positioned(
                 top: 50,
                 left: 20,
@@ -131,11 +167,32 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-
-
+          Container(
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                dio
+                    .post("https://jsonplaceholder.typicode.com/posts", data: {
+                      'userId': 12,
+                      'title': globals.user?.fullName,
+                      'body': "loremipsum dolar si"
+                    })
+                    .then((value) => print(value.toString()))
+                    .catchError((err) => print(err.toString()));
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF6179CD),
+                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: Text("Api ya veri yolla öylesine"),
+            ),
+          )
         ],
       ),
     );
   }
 }
-
